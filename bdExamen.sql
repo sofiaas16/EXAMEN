@@ -54,17 +54,17 @@ UNLOCK TABLES;
 DROP TABLE IF EXISTS detalles_pedidos;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE IF NOT EXISTS detalles_pedidos (
+
+CREATE TABLE IF NOT EXISTS `detalles_pedidos` (
     `detalle_id` int AUTO_INCREMENT PRIMARY KEY,
     `pedido_id` int NOT NULL,
     `producto_id` int NOT NULL,
     `cantidad` int NOT NULL,
     `precio_unitario` decimal(10,2) NOT NULL,
-    `sucid` int DEFAULT NULL,
-    foreign key (`pedido_id`) references `pedidos`(`pedido_id`),
-    foreign key (`producto_id`) references `producto`(`productoid`)
-);
-
+    `sucid` int NOT NULL,
+    foreign key (`pedido_id`) references `pedidos`(`pedidos_id`),
+    foreign key (`producto_id`) references `productos`(`productoid`)
+) ;
 
 LOCK TABLES `detalles_pedidos` WRITE;
 /*!40000 ALTER TABLE `detalles_pedidos` DISABLE KEYS */;
@@ -182,12 +182,11 @@ DROP TABLE IF EXISTS `productos`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE IF NOT EXISTS `productos` (
-    `producto_id` int NOT NULL AUTO_INCREMENT,
+    `producto_id` int NOT NULL AUTO_INCREMENT PRIMARY KEY,
     `nombre` varchar(80) DEFAULT NULL,
     `categoria` varchar(80) DEFAULT NULL,
     `precio` decimal(10,2) DEFAULT NULL,
-    `stock` int DEFAULT NULL,
-    PRIMARY KEY (`producto_id`)
+    `stock` int DEFAULT NULL
 );
 LOCK TABLES `productos` WRITE;
 /*!40000 ALTER TABLE `productos` DISABLE KEYS */;

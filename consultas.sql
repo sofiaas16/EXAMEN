@@ -23,3 +23,13 @@ ON emp.empleado_id = sucursal.id
 WHERE emp.empleado_id > 1;
 
 --4. Mostrar el total de empleados por municipio y el nombre del departamento al que pertenecen.
+SELECT mp.nombre, COUNT(emp.empleado_id) AS total_empleados
+FROM municipio mp
+JOIN empleados emp 
+ON mp.id = emp.empleado_id
+GROUP BY mp.nombre;
+
+-- 5. Mostrar todos los municipios con sucursales activas (que tengan al menos un empleado).
+SELECT mp.nombre
+FROM municipio mp
+JOIN sucursal  ON mp.id = sucursal.id;
